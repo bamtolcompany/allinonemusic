@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>올인원 뮤직</title>
+  <meta name="description" content="많은 음악 플랫폼의 음악을 한곳에서 검색하세요">
+  <link rel="icon" href="favicon.png" type="image/png">
+  <style>
+  html {margin:0; padding:0;}
+  body {background-color:#1ACFFD; margin:0; padding:0;}
+  header {background-color:#148AFF; padding:1px; margin-bottom:10px; padding-bottom:0;}
+  button {width:300px; height:100px; margin:5px; border-radius:30px; border:solid 1px black; background-color:yellow; font-size:40px;}
+  input {width:95%; height:50px; margin:10px; font-size:140%; border-radius:15px; border:1px solid black;}
+input:focus {outline: none; border: 3px solid black;}
+  footer {background-color:white; padding:1px;}
+  nav {background-color:#006EDB;}
+  nav a {color:white; text-decoration:none; border-radius:6px;}
+  li {color:white;}
+  h2 {text-align:center;}
+  .chart {background-color:#92F2FF; text-align:center; padding:5px;}
+  .chart a {font-size:18px; color:black; text-decoration:none; margin:10px;}
+  </style>
+</head>
+<body>
+  <header>
+  <h1>올인원 뮤직-모든 음악을 한곳에서 검색하세요</h1>
+    <nav>
+      <ul>
+        <li>
+      <a href="https://bamtolcompany.github.io/">올인원 검색</a>
+        </li>
+        <li>
+      <a href="https://bamtolcompany.github.io/allinonenews">올인원 뉴스</a>
+        </li>
+        <li>
+      <a href="https://bamtolcompany.github.io/allinoneshopping">올인원 쇼핑</a>
+        </li>
+        <a href="https://bamtolcompany.github.io/apps">더보기</a>
+    </ul>
+    </nav>
+  </header>
+  <main>
+    <section class="search">
+    <h2>음악은 올인원 뮤직에서</h2>
+    <input type="search" placeholder="검색어를 입력하세요" id="query">
+  <button onclick="search('melon')">멜론</button>
+  <button onclick="search('bugs')">벅스</button>
+  <button onclick="search('flo')">플로</button>
+  <button onclick="search('vibe')">네이버 바이브</button>
+  <button onclick="search('youtube')">유튜브</button>
+  <button onclick="search('spotify')">스포티파이</button>
+    </section>
+<section class="chart">
+  <h2>🎵 인기 차트 바로가기</h2>
+  <a href="https://www.melon.com/chart/" target="_blank">멜론 차트</a>
+  <a href="https://music.bugs.co.kr/chart" target="_blank">벅스 차트</a>
+  <a href="https://www.music-flo.com/browse" target="_blank">플로 차트</a>
+  <a href="https://vibe.naver.com/chart" target="_blank">바이브 차트</a>
+  <a href="https://m.youtube.com/playlist?list=PL4fGSI1pDJn6jXS_Tv_N9B8Z0HTRVJE0m" target="_blank">유튜브 뮤직</a>
+  <a href="https://charts.spotify.com/" target="_blank">스포티파이</a>
+</section>
+  </main>
+  <footer>
+    <p>&copy; 2025 bamtol company. All rights reserved.</p>
+  </footer>
+  <script>
+  function search(engine) {
+    const input = document.getElementById('query');
+    const query = input.value.trim();
+
+    let url = '';
+    const ua = navigator.userAgent;
+const isMobile = /Mobi|Android|iPhone|iPad/i.test(ua);
+    
+    switch(engine) {
+      case 'melon': url = `https://www.melon.com/search/song/index.htm?q=${encodeURIComponent(query)}`; break;
+      case 'bugs': url = `https://music.bugs.co.kr/search/integrated?q=${encodeURIComponent(query)}`; break;
+      case 'flo': url = `https://www.music-flo.com/search/all?keyword=${encodeURIComponent(query)}`; break;
+      case 'vibe': url = `https://vibe.naver.com/search?query=${encodeURIComponent(query)}`; break;
+      case 'youtube': url = `https://www.youtube.com/results?search_query=${encodeURIComponent(query)}`; break;
+      case 'spotify': if (isMobile) {url = `https://open.spotify.com/search/result/${encodeURIComponent(query)}`;}
+else {
+  url = `https://open.spotify.com/search/${encodeURIComponent(query)}`
+}      
+      break;
+    }
+    window.open(url, '_blank');
+  }
+  </script>
+</body>
+</html>
